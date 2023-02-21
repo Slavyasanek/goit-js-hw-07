@@ -18,10 +18,24 @@ galleryParent.innerHTML = images;
 
 const loadImageFullSize = (event) => {
     event.preventDefault();
+    const closePhotoByKeyPress = (event) => {
+        if (event.code !== 'Escape') {
+         return;   
+        }
+        return largePhoto.close();
+    }    
     const selectedImage = event.target.dataset.source;
     const largePhoto = basicLightbox.create(
-        `<img src="${selectedImage}" width="1280">`, );
+        `<img src="${selectedImage}" width="1280">`, {
+            onShow: (largePhoto) => {
+                window.addEventListener('keydown', closePhotoByKeyPress)
+            }, 
+            onClose: (largePhoto) => {
+                window.removeEventListener('keydown', closePhotoByKeyPress)
+            }
+        });
     largePhoto.show();
 }
+
 
 galleryParent.addEventListener("click", loadImageFullSize);
