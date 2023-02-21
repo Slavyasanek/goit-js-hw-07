@@ -16,8 +16,10 @@ const images = galleryItems.map(item => `
 </div>`).join("");
 galleryParent.innerHTML = images;
 
+// * add modal open
 const loadImageFullSize = (event) => {
     event.preventDefault();
+    // * fucntion to close by escape
     const closePhotoByKeyPress = (event) => {
         if (event.code !== 'Escape') {
          return;   
@@ -25,6 +27,7 @@ const loadImageFullSize = (event) => {
         return largePhoto.close();
     }    
     const selectedImage = event.target.dataset.source;
+    // * initializating modal
     const largePhoto = basicLightbox.create(
         `<img src="${selectedImage}" width="1280">`, {
             onShow: () => {
