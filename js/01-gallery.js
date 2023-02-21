@@ -27,10 +27,10 @@ const loadImageFullSize = (event) => {
     const selectedImage = event.target.dataset.source;
     const largePhoto = basicLightbox.create(
         `<img src="${selectedImage}" width="1280">`, {
-            onShow: (largePhoto) => {
+            onShow: () => {
                 window.addEventListener('keydown', closePhotoByKeyPress)
             }, 
-            onClose: (largePhoto) => {
+            onClose: () => {
                 window.removeEventListener('keydown', closePhotoByKeyPress)
             }
         });
